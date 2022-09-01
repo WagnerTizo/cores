@@ -7,17 +7,21 @@ class App extends Component {
     this.state = {
       corTexto: 'White',
       estilo: 'White',
-      imagem: "./src/img/laranja.png"
+      imagem: require('./')
     };
+    
   }
 
   //função que recebe dois parametros (corTexto e estiloFundo)
-  funcaoPersonalizacao(corDoTexto, estiloFundo) {
+  funcaoPersonalizacao(corDoTexto, estiloFundo, imagem) {
     this.setState({
       corTexto: corDoTexto
     })
     this.setState({
       estilo: estiloFundo
+    })
+    this.setState({
+      imagem: imagem
     })
   }
 
@@ -25,19 +29,19 @@ class App extends Component {
   
 
   render() {
+    let { imagem } = this.state
     //console.log('Qual o link da imagem:', this.state.imagem)
     console.log('Qual o a cor do texto:', this.state.corTexto)
-    console.log('IMG', this.state.imagem)
     return (
       /*View container maior */
       <View style={styles[this.state.estilo]}>
 
         {/*View tres botoes iniciais */}
         <View style={styles.viewBotoes}>
-          <TouchableOpacity style={[styles.botao, { backgroundColor: '#912' }]} onPress={() => this.funcaoPersonalizacao('Vermelho', 'Red')}>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: '#912' }]} onPress={() => this.funcaoPersonalizacao('Vermelho', 'Red', require('./src/img/morango.jpeg'))}>
             <Text style={styles.texto}>Vermelho</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.botao, { backgroundColor: '#1a2' }]} onPress={() => this.funcaoPersonalizacao('Verde', 'Green')}>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: '#1a2' }]} onPress={() => this.funcaoPersonalizacao('Verde', 'Green', require('./src/img/macaverde.jpeg'))}>
             <Text style={styles.texto}>Verde</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.botao, { backgroundColor: '#12a' }]} onPress={() => this.funcaoPersonalizacao('Azul', 'Blue')}>
@@ -81,9 +85,9 @@ class App extends Component {
         <View style={styles.ViewImage}>
 
           {/*View imagem */}
-          <View style={{ backgroundColor: '#f88', width: '80%', height: 280, borderRadius: 18 }}>
+          <View style={styles.imageContainer}>
             {/* img(url: this.state.imagem) */}
-            <Image style={{width:'100%' , height: '100%'}} source={require("./src/img/laranja.png")} />
+             <Image style={styles.imagemStyle} source={this.state.imagem} />
           </View>
         </View>
       </View>
@@ -162,7 +166,21 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '36%',
     justifyContent: 'center',
-    alignItems: 'center'
+    marginTop: 5,
+    alignItems: 'center',
+  },
+
+  imageContainer:{
+    backgroundColor: '#333',
+    width: '80%', 
+    height: 280, 
+    borderRadius: 18,
+  },
+
+  imagemStyle:{
+    width: '100%',
+    height:'100%',
+    borderRadius: 18
   },
 
   botao: {
