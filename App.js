@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       corTexto: 'White',
-      estilo: 'White'
+      estilo: 'White',
+      imagem: "./src/img/laranja.png"
     };
   }
 
@@ -26,6 +27,7 @@ class App extends Component {
   render() {
     //console.log('Qual o link da imagem:', this.state.imagem)
     console.log('Qual o a cor do texto:', this.state.corTexto)
+    console.log('IMG', this.state.imagem)
     return (
       /*View container maior */
       <View style={styles[this.state.estilo]}>
@@ -81,6 +83,7 @@ class App extends Component {
           {/*View imagem */}
           <View style={{ backgroundColor: '#f88', width: '80%', height: 280, borderRadius: 18 }}>
             {/* img(url: this.state.imagem) */}
+            <Image style={{width:'100%' , height: '100%'}} source={require("./src/img/laranja.png")} />
           </View>
         </View>
       </View>
