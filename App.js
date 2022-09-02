@@ -32,6 +32,7 @@ class App extends Component {
     let { imagem } = this.state
     //console.log('Qual o link da imagem:', this.state.imagem)
     console.log('Qual o a cor do texto:', this.state.corTexto)
+    
     return (
       /*View container maior */
       <View style={styles[this.state.estilo]}>
@@ -172,8 +173,8 @@ const styles = StyleSheet.create({
 
   imageContainer:{
     backgroundColor: '#333',
-    width: '80%', 
-    height: 280, 
+    width: '70%', 
+    height: '90%', 
     borderRadius: 18,
   },
 
